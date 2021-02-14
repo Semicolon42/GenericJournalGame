@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "name": "Tim Hutchings",
+    "email": "hutchingsonian@gmail.com",
+    "website": "https://thousandyearoldvampire.com/"
+  },
+  "journal": {
+    "maxMemories": 5,
+    "maxExperiencesPerMemory": 3
+  },
+  "resources": [
+    {
+      "name": "Skill",
+      "namePlural": "Skills",
+      "description": "Skills describe the capabilities and characteristics of your vampire. They indicate what your vampire can do and what they might do."
+    },
+    {
+      "name": "Mark",
+      "namePlural": "Marks",
+      "description": "A Mark is a visible indication of your vampire’s undying state, or any other thing that sets them apart from mortal people."
+    },
+    {
+      "name": "Character",
+      "namePlural": "Characters",
+      "description": "Characters are the people with whom your vampire has a relationship",
+      "types": [
+        "Mortal",
+        "Immortal"
+      ]
+    },
+    {
+      "name": "Resource",
+      "namePlural": "Resources",
+      "description": "Resources are assets or structures that are useful to your vampire, or items that they value.",
+      "types": [
+        "Mortal",
+        "Immortal"
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "promptNumber": 1,
+      "id": "A",
+      "entries": [
+        {
+          "message": "In your blood-hunger you destroy someone close to you.Kill a mortal [character]. Create a mortal if none\n are available. Take the [skill] \"Bloodthirsty\".",
+          "actions": [
+            "IfNone:Character:+Character",
+            "-Character",
+            "+Skill:Bloodthirsty"
+          ]
+        },
+        {
+          "message": "You are overcome by panic and maul someone close to you accidentally turning them into a monster like yourself. Convert a beloved mortal Character into an enemy immortal. Take the Skill \"Ashamed\"",
+          "actions": [
+            "IfNone[Character[Mortal]]:+Character[Mortal]",
+            "-Character[Mortal]",
+            "+Character[Immortal]",
+            "+Skill:Ashamed"
+          ]
+        },
+        {
+          "message": "You are captured and enslaved by a wicked and powerful super natural entity. Create an immortal Character. How do you eventually escape their servitude? Check a Skill and take the Skill \"Humans are Cattle\". Strike out all mortal Characters, as a hundred years have passed. Take a Resource you have used for evil while in service to your former master.",
+          "actions": [
+            "+Character[Immortal]",
+            "-All:Character[Mortal]",
+            "-+Skill",
+            "+Skill:Humans are Cattle"
+          ]
+        }
+      ]
+    }
+  ]
+}
